@@ -1,0 +1,277 @@
+/* download images from unsplash.com */
+/* custom properties */
+*, 
+*::before,
+*::after{
+    box-sizing: border-box;
+
+}
+:root{
+    --ff-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --ff--secondary:'Times New Roman', Times, serif;
+
+    --fw-reg: 300;
+    --fw-bold: 900;
+    
+    --clr-light: #fff;
+    --clr-dark: #303030;
+    --clr-accent: #16e0bd;
+
+    --fs-h1: 3rem;
+    --fs-hs: 2.25rem;
+    --fs-h3: 1.25rem;
+    --fs-body: 1rem;   
+    --bs: .25em .25em 0.75em rgba(0,0,.25);
+    /* we can create multiple shadows using coma(,) */
+}
+@media (min-width: 800px){
+        :root{
+                --fs-h1: 4.5rem;
+                --fs-h2: 3.75rem;
+                --fs-h3: 1.5rem;
+                --fs-body: 1.125rem;
+        }
+}
+/* general style */
+body{
+    background-color: var(--clr-light);   
+    color: var(--clr-dark);
+    margin:0;
+    font-family: var(--fs-body);
+    font-style: var(--fs-body);
+    line-height: 1.6;/* defines lines between txt */
+}
+.section{
+    padding: 5em, 2em;
+}
+img{
+    display: block;
+    min-width: 100%;
+}
+/* typography */
+
+strong{font-weight: var(--fw-bold);}
+
+:focus{
+    /* not working? */
+        outline: 3px solid var(--clr-dark);
+        outline-offset: 3px;
+    }
+
+/* buttons */
+
+.btn{
+    display: inline-block;
+    padding: .5em 2.5em;
+    background: var(--clr-accent);
+    color: var(--clr-dark);
+    text-decoration: none;
+    cursor: pointer;
+    font-style: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: var(--fw-bold);
+    transition:transform 2000ms ease-in-out;
+}
+
+.btn:hover{
+    transform: scale(1.1);
+}
+
+:focus{
+    outline: 3px solid var(--clr-accent);
+    outline-offset: 3px;
+    /* this works only when you tap on it */
+}
+
+h1,
+h2,
+h3{
+    line-height: 1;
+    margin: 0;
+}
+
+h1{font-size: var(--fs-h1)}
+h2{font-size: var(--fs-h2)}
+h2{font-size: var(--fs-h2)}
+
+/* section is not a  */
+
+section{
+    padding:5em 2em;
+}
+
+.section__title{
+    margin-bottom:.25em;
+}
+.section__title--intro{
+    font-weight: var(--fw-reg);
+}
+
+.section__title--intro strong{
+    display: block;
+}
+
+.section__subtitle{
+    margin:0;
+    font-size: var(--fs-h3);
+}
+.section__subtitle--intro,
+.section__subtitle--about{
+    
+    background: var(--clr-accent);
+    padding: .25em 1em;
+    font-family: var(--ff--secondary);
+    margin-bottom: 1em;
+}
+
+.nav{display: none;}
+
+/* intro section */
+
+.intro{
+    position: relative;
+}
+.intro__img{
+    box-shadow: var(--bs);
+}
+.section__subtitle--intro{
+    display: inline-block;
+}
+/* generic one are 300, 600, 900px */
+@media(min-width: 600px){
+    .intro{
+        display: grid;
+        grid-column-gap: 1em;
+        width: min-content;
+        margin: 0 auto;
+        grid-template-areas:
+        "img title"
+        "img subtitle" ;
+        grid-template-columns:min-content max-content;
+    }
+
+    .intro__img{
+        /* this wont show until i submit photo */
+        grid-area: img;
+        min-width: 250px;
+        position: relative;
+        z-index: 2;
+    }
+    .section__subtitle--intro{
+        align-self: start;
+        /* stops from streaching */
+        grid-column: -1/1;
+        grid-row: 2;
+        text-align: right;
+        position: relative;
+        left: -1.5rem;
+        width: calc(100%+1.5em);
+    }
+}
+
+/* styling services */
+.my-services{
+    background-color: var(--clr-dark);
+    background-image: url(img3.jpg);/* should it have apphostrophy? */
+    background-size: cover;/* so background doesn't repeat itself */
+    background-blend-mode: multiply;/*it blends background img to background color*/
+    color: var(--clr-light);
+    text-align: center;
+}
+
+.section__title--services{
+    color: var(--clr-accent);
+    position: relative;
+}
+
+.section__title--services::after{
+    /* where is the border defined for seciton title intro in this code? */
+    content: '';
+    display: block;
+    width: 3em;
+    height: 1px;
+    margin: 0.5em auto 1em;
+    background: var(--clr-light);
+    opacity: 0.25;
+}
+/* dont know if this is the reason for problem over 800 pixels */
+.service{
+    max-width: 500px;
+    margin: 0 auto;
+}
+.service{
+margin-bottom: 5px;
+}
+
+/* this is not working i.e. im not able to do three veritcal columns */
+/* @media(min-width: 800px){
+    .service{
+        display: flex;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    .service+.service{
+        margin: 2em  ;
+    }
+} */
+
+
+
+/* about me  */
+
+.about-me{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media(min-width: 600px)
+{
+    .about-me{
+        display: grid;
+        grid-template-columns: 1fr 200px;
+        grid-template-areas: 
+        "title img"
+        "subtitle img"
+        "text img";
+        grid-column-gap: 2em;
+    }
+    .section__title--about{
+        /* grid-column: 1; */
+        grid-area: "title";
+    }
+    .section__subtitle--about{
+        /* grid-area: "subtitle"; */
+        grid-column: 1/-1;
+        grid-row: 2;
+        position: relative;
+        left: -2em;
+        width: calc(100%+4em);
+        padding-left: 2em;
+        padding-right: calc(200px+2em);
+    }
+    .about-me__img{
+        /* grid-row: 1/-1; */
+        /* grid-column: 2; */
+        grid-area: "img";
+        box-shadow: var(--bs);
+        position: relative;
+        z-index: 2;
+        /* it makes the image go over the text */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
